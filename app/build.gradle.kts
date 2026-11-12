@@ -41,6 +41,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.ui)
     // Icons
     implementation(libs.compose.icons)
 
