@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">contoh 7</string>
+    <string name="entry_siswa">Tambah Siswa</string>
+    <string name="back">Kembali</string>
+    <string name="btn_submit">Simpan</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="telpon">Nomor Telepon</string>
+    <string name="required_field">* Wajib diisi</string>
+    <string name="deskripsi_no_item">Belum ada data siswa. Tekan tombol + untuk menambahkan data.</string>
 </resources>
