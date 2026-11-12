@@ -1,4 +1,6 @@
 package com.example.contoh7
 
-class AplikasiSiswa {
-}
+import android.app.Application
+import com.example.contoh7.repositori.ContainerApp
+import com.example.contoh7.repositori.ContainerDataApp
+
