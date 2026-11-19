@@ -1,11 +1,33 @@
+
 <resources>
     <string name="app_name">contoh 7</string>
+
+    <!-- Navigasi -->
     <string name="entry_siswa">Tambah Siswa</string>
+    <string name="detail_siswa">Detail Siswa</string>
+    <string name="edit_siswa">Edit Siswa</string>
     <string name="back">Kembali</string>
+
+    <!-- Form Siswa -->
     <string name="btn_submit">Simpan</string>
     <string name="nama">Nama</string>
     <string name="alamat">Alamat</string>
     <string name="telpon">Nomor Telepon</string>
     <string name="required_field">* Wajib diisi</string>
+
+    <!-- Detail Siswa -->
+    <string name="nama1">Nama</string>
+    <string name="alamat1">Alamat</string>
+    <string name="telpon1">Nomor Telepon</string>
+    <string name="update">Edit Data</string>
+    <string name="delete">Hapus Data</string>
+
+    <!-- Konfirmasi Hapus -->
+    <string name="attention">Perhatian</string>
+    <string name="tanya">Apakah Anda yakin ingin menghapus data siswa ini?</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Ya</string>
+
+    <!-- Home -->
     <string name="deskripsi_no_item">Belum ada data siswa. Tekan tombol + untuk menambahkan data.</string>
 </resources>
