@@ -1,6 +1,7 @@
 
 package com.example.contoh7.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -48,15 +50,19 @@ object DestinasiHome : DestinasiNavigasi {
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
+    navigateToDetailItem: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(
         factory = PenyediaViewModel.Factory
     )
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val uiStateSiswa by viewModel.homeUiState.collectAsState()
 
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.nestedScroll(
+            scrollBehavior.nestedScrollConnection
+        ),
         topBar = {
             SiswaTopAppBar(
                 title = stringResource(DestinasiHome.titleRes),
@@ -80,10 +86,9 @@ fun HomeScreen(
         }
     ) { innerPadding ->
 
-        val uiStateSiswa by viewModel.homeUiState.collectAsState()
-
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
+            onItemClick = navigateToDetailItem,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -94,6 +99,7 @@ fun HomeScreen(
 @Composable
 fun BodyHome(
     itemSiswa: List<Siswa>,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -109,6 +115,7 @@ fun BodyHome(
         } else {
             ListSiswa(
                 itemSiswa = itemSiswa,
+                onItemClick = onItemClick,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen.padding_small
@@ -122,6 +129,7 @@ fun BodyHome(
 @Composable
 fun ListSiswa(
     itemSiswa: List<Siswa>,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
@@ -131,6 +139,9 @@ fun ListSiswa(
         ) { person ->
             DataSiswa(
                 siswa = person,
+                onClick = {
+                    onItemClick(person.id)
+                },
                 modifier = Modifier.padding(
                     dimensionResource(id = R.dimen.padding_small)
                 )
@@ -142,10 +153,11 @@ fun ListSiswa(
 @Composable
 fun DataSiswa(
     siswa: Siswa,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 2.dp
         )
